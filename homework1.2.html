@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE-Edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>hmwk1.2</title>
+  <style>
+    span {
+      color: deeppink;
+    }
+
+    div {
+      text-align: left;
+      margin: 10px;
+      width: 500px;
+    }
+
+    label {
+      display: inline-block;
+      width: 80px;
+      text-align: right;
+    }
+
+
+    .tip {
+      color: rgb(124, 0, 0);
+      font-size: 20px;
+    }
+
+    .gender {
+      text-align: left;
+      width: 60px;
+
+    }
+
+    .bd {
+      width: 170px;
+    }
+
+    .bdsp {
+      width: 165px;
+    }
+
+    .bbd {
+      width: 83px;
+    }
+
+    .msg {
+      vertical-align: top;
+    }
+  </style>
+</head>
+
+
+<!-- 分界线 -->
+
+
+<body>
+  <h3 style="color: blue;">欢迎注册会员</h3>
+  <form action="test.html" method="get">
+    <div>
+      <label for="phone">手机号码:</label>
+      <input type="text" placeholder="11位手机号" name="phone" id="phone"><span>*必填</span>
+    </div>
+    <div>
+      <label for="pwd">创建密码:</label>
+      <input type="password" placeholder="8位密码" name="pwd" id="pwd"><span>*必填</span>
+    </div>
+
+
+    <div>
+      <label for="mail">注册邮箱:</label>
+      <input type="text" placeholder="例如：123456@mail.com" name="mail" id="mail"><span>*必填</span>
+    </div>
+
+    <div>
+      <label for="yzm">验证码:</label>
+      <input type="text" name="yzm" id="yzm"><span>*</span>
+    </div>
+
+    <div id="Sex">
+      <label>性别:</label>
+      <label class="gender">
+        <input type="radio" name="sex" value="male" checked="checked">男
+      </label>
+      <label class="gender">
+        <input type="radio" name="sex" value="female">女
+      </label>
+    </div>
+
+    <div>
+      <label for="bday">生日:</label>
+      <input type="date" id="bday" name="bday" class="bdsp">
+    </div>
+
+    <div>
+      <label for="age">年龄:</label>
+      <input type="text" id="age" name="age">
+    </div>
+
+    <div>
+      <label>籍贯:</label>
+      <select name="jg" size="1" class="bbd">
+        <option value="hb">湖北</option>
+        <option value="hn">河南</option>
+      </select>
+      <select name="jgs" size="1" class="bbd">
+        <option value="hb">武汉</option>
+        <option value="hn">郑州</option>
+      </select>
+    </div>
+
+    <div>
+      <label>个人学历:</label>
+      <select name="xl" size="1" class="bd">
+        <option value="bk">本科</option>
+        <option value="zk">专科</option>
+      </select>
+    </div>
+
+    <div>
+      <label>月薪:</label>
+      <input type="range" id="score" name="score" min="0.0" max="10000.0" step="100" value="6000.0">
+      <span id="msg"></span>
+    </div>
+
+    <div>
+      <label>个人爱好:</label>
+      <label class="gender">
+        <input type="checkbox" name="like" value="sing">唱歌
+      </label>
+      <label class="gender">
+        <input type="checkbox" name="like" value="run">跑步
+      </label>
+      <label class="gender">
+        <input type="checkbox" name="like" value="swim">游泳
+      </label>
+    </div>
+
+    <div>
+      <label>个人照片:</label>
+      <input type="file" name="photo" id="photo" accept="文件类型" class="bd">
+    </div>
+
+    <div>
+      <label>图片预览:</label>
+      <span id="test-image-preview" style="display: inline-block; border: 1px solid silver; width: 300px; height: 200px; background-repeat: no-repeat; 
+      background-position: center;">
+        <span id="test-file-info">没有选择文件</span>
+      </span>
+    </div>
+    <div>
+      <label for="intro">个人简介:</label>
+      <textarea name="intro" id="intro" cols="50" rows="10" class="msg"></textarea>
+    </div>
+
+
+    <div>
+      <label></label>
+      <input type="submit" value="提交">
+      <input type="reset" value="重填">
+    </div>
+  </form>
+
+
+
+  <!-- 分界线 -->
+
+
+  <script>
+    var fileInput = document.getElementById('photo');
+    var info = document.getElementById('test-file-info');
+    var preview = document.getElementById('test-image-preview');
+    fileInput.addEventListener('change', function () { // 监听change事件
+      preview.style.backgroundImage = ''; // 清除背景图片 
+      if (!fileInput.value) {
+        info.innerHTML = '没有选择文件';
+        return;
+      }
+      var file = fileInput.files[0]; // 获取File引用
+      // 获取File信息:
+      info.innerHTML = '文件: ' + file.name + '<br>' + '大小: ' + file.size + '<br>' + '修改: ' + file.lastModifiedDate;
+      if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+        alert('不是有效的图片文件!');
+        return;
+      }
+      var reader = new FileReader(); // 读取文件
+      reader.onload = function (e) { // 发起一个异步操作来读取文件内容
+        var data = e.target.result; // data串形如： 'data:image/jpeg;base64,/9j/4AAQSk...(base64编码)...' 
+        preview.style.backgroundImage = 'url(' + data + ')';
+      };
+      reader.readAsDataURL(file); // 以DataURL的形式读取文件
+    });
+
+
+
+    var msg = document.getElementById("msg"); // 根据id值找到span元素
+    window.onload = function () {
+      msg.innerHTML = document.getElementById("score").value; // 获取区间域初始value值
+    }
+    document.getElementById("score").onchange = function () {
+      msg.innerHTML = this.value; // 将当前区间域的value作为span元素的内容
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+* {
+    padding: 0px;
+}
+
+/*通配符选择器，匹配任何*/
+
+div {
+    text-align: center;
+    margin: 20px auto;
+    width: 500px;
+    height: 300px;
+    border: 5px solid rgb(146, 180, 255);
+    background-color: #34325a;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    /*background-image: url("images/1.gif");*/
+    background-image: linear-gradient(to right, rgb(127, 254, 254), rgb(237, 162, 231));
+    border-style: groove;
+}
+
+/*标签选择器*/
+img {
+    width: 350px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.4);
+}
+
+p,
+h2 {
+    color: aqua;
+    background-color: rgb(0, 88, 88);
+}
+
+span {
+    color: cornsilk;
+}
+
+span:hover {
+    color: gold;
+    cursor: pointer;
+    box-shadow: 3px 3px 8px 1px rgba(0, 0, 0, 0.4);
+}
+
+/*鼠标移上来:hover*/
+#tag {
+    border: 10px solid rgb(155, 166, 255);
+    border-style: inset;
+}
+
+#bar {
+    color: black;
+    text-align: center;
+    background-color: rgb(124, 199, 202);
+    width: 130px;
+    border-left: 20px solid rgb(119, 18, 174);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 30px;
+    font-size: 50px;
+    font-family: 仿宋;
+    font-weight: 900;
+}
+
+#bar:hover {
+    background-color: rgb(39, 241, 248);
+    cursor: pointer;
+    box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.2);
+    font-style: italic;
+    color: blue;
+    /*阴影*/
+}
+
+table {
+    font-family: 微软雅黑;
+    width: 60%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    /* 相邻的表格边框合并 */
+}
+
+.table th,
+.table td {
+    border: 1px solid #98bf21;
+}
+
+.table caption {
+    font-size: 1.2rem;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+}
+
+.table th {
+    background-color: #a7c942;
+    color: #fff;
+    font-size: 1.1em;
+    text-align: left;
+    padding: 5px 7px;
+}
+
+.table td {
+    padding: 3px 7px;
+}
+
+.table tr.alt {
+    background-color: #eaf2d3;
+}
+
+.table tr:hover {
+    cursor: pointer;
+    background-color: aliceblue;
+}
+
+/*xxx标签选择器 #xxx{}*/
