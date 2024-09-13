@@ -50,6 +50,17 @@
     .msg {
       vertical-align: top;
     }
+
+    img {
+      vertical-align: middle;
+      width: 30px;
+      cursor: pointer;
+    }
+
+    #capcha {
+      background-color: rgb(208, 222, 248);
+      color: blue;
+    }
   </style>
 </head>
 
@@ -77,7 +88,9 @@
 
     <div>
       <label for="yzm">验证码:</label>
-      <input type="text" name="yzm" id="yzm"><span>*</span>
+      <input type="text" name="yzm" id="yzm">
+      <span id="capcha">4位验证码</span>
+      <img src="images/arrow_03.png" id="change_capcha" alt="" />
     </div>
 
     <div id="Sex">
@@ -203,6 +216,35 @@
     document.getElementById("score").onchange = function () {
       msg.innerHTML = this.value; // 将当前区间域的value作为span元素的内容
     }
+
+
+
+    //验证码：由大小写字母或数字组成
+    let codeStr =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    //验证码长度
+    let length = 4;
+    let capcha = document.getElementById("capcha");
+    let change_capcha = document.getElementById("change_capcha");
+    // 用来生成一个[n,m]随机整数
+    function getRandom(n, m) {
+      return parseInt(Math.random() * (m - n + 1) + n);
+    }
+    // 将随机生成的整数下标对应的字母放入span中
+    function getCode() {
+      let str = "";
+      // 验证码有几位就循环几次
+      for (let i = 0; i < length; i++) {
+        let index = getRandom(0, 61);
+        str += codeStr.charAt(index);
+      }
+      capcha.innerHTML = str;
+    }
+    // 页面初始加载时就调用函数生成验证码，页面刷新也会执行
+    getCode();
+    // 点击刷新验证码
+    capcha.addEventListener("click", getCode);
+    change_capcha.addEventListener("click", getCode);
   </script>
 </body>
 
